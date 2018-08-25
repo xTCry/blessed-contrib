@@ -1,3 +1,6 @@
+# THIS IS A FORK OF BLESSED-CONTRIB THAT WORKS WITH neo-blessed
+## THAT'S IT. NOTHING ELSE.
+
 ## blessed-contrib
 
 Build dashboards (or any other application) using ascii/ansi art and javascript.
