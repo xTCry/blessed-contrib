@@ -1,0 +1,12 @@
+{
+  "name": "blessed-contrib-demo-display",
+  "version": "1.0.0",
+  "description": "Demo display (blessed-contrib)",
+  "main": "demo-display.js",
+  "author": "xTCry (Vladislav Kh)",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@xtcry/blessed": "^2.0.2"
+  }
+}
