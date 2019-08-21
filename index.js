@@ -1,27 +1,49 @@
 
-exports.grid = require('./lib/layout/grid')
-exports.carousel = require('./lib/layout/carousel')
+module.exports = function (blessed) {
 
-exports.map = require('./lib/widget/map')
-exports.canvas = require('./lib/widget/canvas')
+    this.grid = require('./lib/layout/grid')
+    this.carousel = require('./lib/layout/carousel')
 
-exports.gauge = require('./lib/widget/gauge.js')
-exports.gaugeList = require('./lib/widget/gauge-list.js')
+    var widgets = [
+        'map',
+        'canvas',
 
-exports.lcd = require('./lib/widget/lcd.js')
-exports.donut = require('./lib/widget/donut.js')
-exports.log = require('./lib/widget/log.js')
-exports.picture = require('./lib/widget/picture.js')
-exports.sparkline = require('./lib/widget/sparkline.js')
-exports.table = require('./lib/widget/table.js')
-exports.tree = require('./lib/widget/tree.js')
-exports.markdown = require('./lib/widget/markdown.js')
+        'gauge',
+        'gauge-list',
 
-exports.bar = require('./lib/widget/charts/bar')
-exports.stackedBar = require('./lib/widget/charts/stacked-bar')
-exports.line = require('./lib/widget/charts/line')
+        'lcd',
+        'donut',
+        'log',
+        'picture',
+        'sparkline',
+        'table',
+        'tree',
+        'markdown',
+    ];
 
-exports.OutputBuffer = require('./lib/server-utils').OutputBuffer
-exports.InputBuffer = require('./lib/server-utils').InputBuffer
-exports.createScreen = require('./lib/server-utils').createScreen
-exports.serverError = require('./lib/server-utils').serverError
+    for (const widget of widgets) {
+        var name = snakeToVar(widget);
+        this[name] = (new (require(`./lib/widget/${widget}.js`))(blessed)).exports;
+    }
+
+    var widgetsCharts = [
+        'bar',
+        'stacked-bar',
+        'line',
+    ];
+    for (const widget of widgetsCharts) {
+        var name = snakeToVar(widget);
+        this[name] = (new (require(`./lib/widget/charts/${widget}.js`))(blessed)).exports;
+    }
+
+    var serverUtils = new (require('./lib/server-utils'))(blessed);
+    this.OutputBuffer = serverUtils.OutputBuffer
+    this.InputBuffer = serverUtils.InputBuffer
+    this.createScreen = serverUtils.createScreen
+    this.serverError = serverUtils.serverError
+
+}
+
+function snakeToVar(str) {
+    return str.split('-').map((part, i) => (i > 0) ? `${part.charAt(0).toUpperCase()}${part.slice(1)}` : part).join('');
+}
