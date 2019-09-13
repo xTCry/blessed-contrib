@@ -15,6 +15,7 @@ module.exports = function (blessed) {
         'donut',
         'log',
         'picture',
+        'reverselog',
         'sparkline',
         'table',
         'tree',

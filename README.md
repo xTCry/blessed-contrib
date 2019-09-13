@@ -1,35 +1,44 @@
+[![npm][npm]][npm-url]
+[![used by][used-by]][npm-url]
+[![node][node]][node-url]
+[![deps][deps]][deps-url]
+
 # @xtcry/blessed-contrib
 Custom selection of Blessed library
 
 ## Slight differences (Upgrade your code)
 
-### Before
+### blessed-contrib
+#### Before
 
 ```js
 const Blessed = require('blessed');
 const Contrib = require('blessed-contrib');
-```
-or
-```js
-const Blessed = require('neo-blessed');
-const Contrib = require('neo-blessed-contrib');
+// ...
 ```
 
-### After
+#### After
 
 ```js
 const Blessed = require('blessed');
 const Contrib = new (require('@xtcry/blessed-contrib'))(Blessed);
+// ...
 ```
-or
+
+### neo-blessed-contrib
+#### Before
 ```js
-const Blessed = require('@xtcry/blessed');
-const Contrib = new (require('@xtcry/blessed-contrib'))(Blessed);
+const Blessed = require('neo-blessed');
+const Contrib = require('neo-blessed-contrib');
+// ...
 ```
-or
+
+#### After
+
 ```js
 const Blessed = require('neo-blessed');
 const Contrib = new (require('@xtcry/blessed-contrib'))(Blessed);
+// ...
 ```
 
 
@@ -45,3 +54,15 @@ See original [documentation](https://github.com/yaronn/blessed-contrib#blessed-c
 ## License
 
 MIT
+
+
+
+[npm]: https://img.shields.io/npm/v/@xtcry/blessed.svg?style=flat-square
+[used-by]: https://img.shields.io/npm/dt/@xtcry/blessed?label=used%20by&style=flat-square
+[npm-url]: https://npmjs.com/package/@xtcry/blessed
+
+[node]: https://img.shields.io/node/v/@xtcry/blessed.svg?style=flat-square
+[node-url]: https://nodejs.org
+
+[deps]: https://david-dm.org/xTCry/blessed.svg?style=flat-square
+[deps-url]: https://david-dm.org/xTCry/blessed
